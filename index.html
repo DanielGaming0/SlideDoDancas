@@ -216,6 +216,33 @@
       backdrop-filter: blur(10px);
     }
 
+    /* School info styles */
+    .school-info {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      z-index: 3;
+      padding: 0 20px;
+    }
+
+    .school-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .participants {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .class-info {
+      font-size: 14px;
+    }
+
     /* Content layout */
     .content-wrap {
       display: flex;
@@ -947,6 +974,16 @@
         font-size: 18px;
       }
 
+      /* School info responsive */
+      .school-info {
+        bottom: 20px;
+        font-size: 14px;
+      }
+      
+      .participants, .class-info {
+        font-size: 12px;
+      }
+
       /* Ajustes específicos para o gráfico no mobile */
       .chart-container {
         height: 350px;
@@ -1016,6 +1053,16 @@
         font-size: 12px;
       }
 
+      /* School info responsive */
+      .school-info {
+        bottom: 15px;
+        font-size: 12px;
+      }
+      
+      .participants, .class-info {
+        font-size: 11px;
+      }
+
       /* Ajustes específicos para o gráfico em telas pequenas */
       .chart-container {
         height: 300px;
@@ -1057,6 +1104,13 @@
           <div class="subtitle">Composição, Evolução e Importância para a Vida no Planeta</div>
           <div class="decorative-line"></div>
           <div class="subject-tag">Ciências da Terra</div>
+        </div>
+        
+        <!-- Informações da escola e integrantes adicionadas aqui -->
+        <div class="school-info">
+          <div class="school-name">C.E.M Quilombola Anajatubense</div>
+          <div class="participants">Integrantes: André, Breno Ryan, Carlos Daniel, David Renan, Davi Cardoso, Guilherme Oliveira</div>
+          <div class="class-info">Turma: 100</div>
         </div>
       </section>
 
@@ -1116,7 +1170,7 @@
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <h3>Atmosfera Redutora</h3>
-                  <p>Composição inicial sem oxigênio livre, rica em metano (CH₄), amônia (NH₃) e hidrogênio (H₂)</p>
+                  <p>Composição inicial sem oxigênio livre, rica in metano (CH₄), amônia (NH₃) e hidrogênio (H₂)</p>
                 </div>
               </div>
               
@@ -1295,7 +1349,7 @@
                 <div class="protection-icon"><i class="fas fa-wind"></i></div>
                 <div class="protection-text">
                   <h3>Distribuição de Umidade</h3>
-                  <p>Os ventos transportam umidade, permitindo o ciclo da água e a precipitação</p>
+                  <p>Os ventos transportam umidade, permitindo o ciclo da água e a precipitção</p>
                 </div>
               </div>
             </div>
@@ -1362,7 +1416,7 @@
         <div class="content-wrap">
           <div class="text">
             <h2><i class="fas fa-lightbulb"></i> Curiosidades sobre a Atmosfera</h2>
-            <p>Além de suas funções vitais, a atmosfera terrestre apresenta características fascinantes que revelam a complexidade e singularidade do nosso planeta no contexto cósmico.</p>
+            <p>Além de suas funções vitais, a atmosfera terrestre apresenta características fascinantes que revelan a complexidade e singularidade do nosso planeta no contexto cósmico.</p>
             
             <div class="curiosities-container">
               <div class="curiosity-item">
