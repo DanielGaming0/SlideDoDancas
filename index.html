@@ -490,7 +490,7 @@
       font-size: 16px;
     }
 
-    /* Composition chart */
+    /* Composition chart - CORRIGIDO */
     .composition-chart {
       margin: 30px 0;
       display: flex;
@@ -516,6 +516,7 @@
       color: white;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      min-height: 30px; /* Altura mínima para garantir que o texto caiba */
     }
 
     .chart-bar:hover {
@@ -524,7 +525,7 @@
     }
 
     .others-bar {
-      height: 10px;
+      height: 30px; /* Altura fixa para a barra de outros gases */
       background: linear-gradient(90deg, #c678dd, #e06c75, #d19a66);
       color: var(--text);
       text-shadow: none;
@@ -538,6 +539,8 @@
     .bar-label {
       position: absolute;
       left: 10px;
+      font-size: 14px;
+      white-space: nowrap;
     }
 
     .note-box {
@@ -943,6 +946,23 @@
       .subtitle {
         font-size: 18px;
       }
+
+      /* Ajustes específicos para o gráfico no mobile */
+      .chart-container {
+        height: 350px;
+      }
+      
+      .chart-bar {
+        min-height: 25px;
+      }
+      
+      .others-bar {
+        height: 25px;
+      }
+      
+      .bar-label {
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -994,6 +1014,24 @@
       .image-caption,
       .group-caption {
         font-size: 12px;
+      }
+
+      /* Ajustes específicos para o gráfico em telas pequenas */
+      .chart-container {
+        height: 300px;
+      }
+      
+      .chart-bar {
+        min-height: 22px;
+      }
+      
+      .others-bar {
+        height: 22px;
+      }
+      
+      .bar-label {
+        font-size: 10px;
+        left: 5px;
       }
     }
   </style>
@@ -1070,7 +1108,7 @@
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <h3>Desgaseificação Vulcânica</h3>
-                  <p>Liberação de gases do interior da Terra como vapor d'água, dióxido de carbono, amônia e metano</p>
+                  <p>Liberação de gases do interior da Terra como vapor d'água, dióxido de carbono, amônia e metana</p>
                 </div>
               </div>
               
@@ -1186,7 +1224,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 6: Composição Atual -->
+      <!-- SLIDE 6: Composição Atual - CORRIGIDO -->
       <section class="slide" data-index="5" aria-hidden="true">
         <div class="content-wrap">
           <div class="text">
@@ -1286,7 +1324,7 @@
               
               <div class="importance-card">
                 <h3><i class="fas fa-tint"></i> Ciclo Hidrológico</h3>
-                <p>Permite a evaporação, condensação e precipitação da água</p>
+                <p>Permite a evaporação, condensação e precipitção da água</p>
               </div>
               
               <div class="importance-card">
@@ -1388,7 +1426,7 @@
             </div>
             
             <div class="final-message">
-              <p>A compreensão e preservação da atmosfera são fundamentais para o futuro da vida na Terra, especialmente face às mudanças climáticas globais.</p>
+              <p>A compreensão e preservação da atmosfera são fundamentais para o futuro da vida na Terra, especialmente face às mudanças climáticas globales.</p>
             </div>
           </div>
           <div class="thank-you-container">
