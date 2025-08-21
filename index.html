@@ -835,6 +835,34 @@
       transition: width 0.3s ease;
     }
 
+    /* NOVOS ESTILOS ADICIONADOS */
+    .school-info {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 16px;
+      z-index: 3;
+      padding: 0 20px;
+    }
+    
+    .school-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    
+    .members-list {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    
+    .class-info {
+      font-style: italic;
+    }
+    
     /* Responsive */
     @media (max-width: 1200px) {
       .content-wrap {
@@ -946,6 +974,19 @@
       .subtitle {
         font-size: 18px;
       }
+      
+      .school-info {
+        font-size: 14px;
+        bottom: 20px;
+      }
+      
+      .school-name {
+        font-size: 16px;
+      }
+      
+      .members-list {
+        font-size: 13px;
+      }
 
       /* Ajustes específicos para o gráfico no mobile */
       .chart-container {
@@ -1015,6 +1056,19 @@
       .group-caption {
         font-size: 12px;
       }
+      
+      .school-info {
+        font-size: 12px;
+        bottom: 15px;
+      }
+      
+      .school-name {
+        font-size: 14px;
+      }
+      
+      .members-list {
+        font-size: 11px;
+      }
 
       /* Ajustes específicos para o gráfico em telas pequenas */
       .chart-container {
@@ -1040,7 +1094,7 @@
   <main class="slider" aria-roledescription="carousel">
     <div class="slides" id="slides">
 
-      <!-- SLIDE 1: Título -->
+      <!-- SLIDE 1: Título (ATUALIZADO) -->
       <section class="slide slide--title" data-index="0" aria-hidden="false">
         <div class="title-background">
           <div class="particles">
@@ -1057,6 +1111,13 @@
           <div class="subtitle">Composição, Evolução e Importância para a Vida no Planeta</div>
           <div class="decorative-line"></div>
           <div class="subject-tag">Ciências da Terra</div>
+        </div>
+        
+        <!-- INFORMAÇÕES DA ESCOLA ADICIONADAS AQUI -->
+        <div class="school-info">
+          <div class="school-name">C.E.M Quilombola Anajatubense</div>
+          <div class="members-list">Integrantes: André Luiz, Breno Ryan, Carlos Daniel, David Renan, Davi Cardoso, Guilherme Oliveira</div>
+          <div class="class-info">Turma: 100</div>
         </div>
       </section>
 
@@ -1089,7 +1150,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide2.jpg" alt="Camadas da atmosfera terrestre" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Camadas+da+Atmosfera" alt="Camadas da atmosfera terrestre" class="slide-image">
             </div>
             <div class="image-caption">Representação das camadas da atmosfera terrestre</div>
           </div>
@@ -1131,7 +1192,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide3.jpg" alt="Vulcão representando a formação da atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Vulcões+Primitivos" alt="Vulcão representando a formação da atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Representação da desgaseificação vulcânica na Terra primitiva</div>
           </div>
@@ -1167,7 +1228,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide4.jpg" alt="Transformações atmosféricas" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Transformações+Atmosféricas" alt="Transformações atmosféricas" class="slide-image">
             </div>
             <div class="image-caption">Processos de transformação na atmosfera terrestre</div>
           </div>
@@ -1217,7 +1278,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide5.jpg" alt="Aumento do oxigênio na atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Aumento+do+Oxigênio" alt="Aumento do oxigênio na atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Representação do aumento de oxigênio na atmosfera terrestre</div>
           </div>
@@ -1229,7 +1290,7 @@
         <div class="content-wrap">
           <div class="text">
             <h2><i class="fas fa-chart-pie"></i> Composição Atmosférica Atual</h2>
-            <p>A atmosfera atual é uma mistura complexa de gases, onde o nitrogênio e o oxigênio predominam, com pequenas quantidades de outros gases que exercem funções críticas para o equilíbrio planetário.</p>
+            <p>A atmosfera atual é uma mistura complexa de gases, onde o nitrogênio e o oxigênio predominam, com pequenas quantidades de outros gases que exercem funções críticas para o equilibrio planetário.</p>
             
             <div class="composition-chart">
               <div class="chart-container">
@@ -1302,7 +1363,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide7.jpg" alt="Proteção atmosférica" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Proteção+Atmosférica" alt="Proteção atmosférica" class="slide-image">
             </div>
             <div class="image-caption">A atmosfera como escudo protetor do planeta Terra</div>
           </div>
@@ -1350,7 +1411,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide8.jpg" alt="Importância da atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Importância+da+Atmosfera" alt="Importância da atmosfera" class="slide-image">
             </div>
             <div class="image-caption">A relação vital entre atmosfera, clima và biosfera</div>
           </div>
@@ -1385,14 +1446,14 @@
                 <div class="curiosity-icon"><i class="fas fa-palette"></i></div>
                 <div class="curiosity-content">
                   <h3>Efeito Óptico</h3>
-                  <p>A atmosfera cria o céu azul e os pores do sol coloridos devido ao espalhamento de Rayleigh, que dispersa mais a luz azul. Sem atmosfera, o céu seria negro mesmo durante o dia, como na Lua.</p>
+                  <p>A atmosfera cria o céu azul e os pores do sol coloridos devido ao espalhamento de Rayleigh, que dispersa mais a luz azul. Sem atmosfera, o céu seria negro mesmo durante o day, como na Lua.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide9.jpg" alt="Curiosidades sobre a atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/1a4b8c/ffffff?text=Curiosidades+Atmosféricas" alt="Curiosidades sobre a atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Fenômenos atmosféricos fascinantes</div>
           </div>
