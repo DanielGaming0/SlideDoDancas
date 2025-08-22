@@ -1568,55 +1568,6 @@
         dots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === idx));
       }
 
-      // Function to adjust text size based on available space
-      function adjustTextSize(slide) {
-        // Skip title slide
-        if (slide.classList.contains('slide--title')) return;
-        
-        const textContainer = slide.querySelector('.text');
-        if (!textContainer) return;
-        
-        const contentWrap = slide.querySelector('.content-wrap');
-        const slideImageContainer = slide.querySelector('.slide-image-container');
-        
-        // Get current font sizes
-        const originalSizes = {
-          h2: window.getComputedStyle(textContainer.querySelector('h2')).fontSize,
-          h3: window.getComputedStyle(textContainer.querySelector('h3')).fontSize,
-          p: window.getComputedStyle(textContainer.querySelector('p')).fontSize
-        };
-        
-        // Convert to numbers for calculation
-        const baseFontSize = parseInt(originalSizes.p);
-        
-        // Check if content overflows
-        const checkOverflow = () => {
-          return textContainer.scrollHeight > textContainer.offsetHeight;
-        };
-        
-        // Gradually reduce font size until content fits
-        let fontSize = baseFontSize;
-        let attempts = 0;
-        const maxAttempts = 10;
-        
-        while (checkOverflow() && attempts < maxAttempts && fontSize > 12) {
-          fontSize -= 1;
-          attempts += 1;
-          
-          // Apply reduced font sizes proportionally
-          textContainer.style.fontSize = `${fontSize}px`;
-          textContainer.querySelectorAll('h2').forEach(el => {
-            el.style.fontSize = `calc(${originalSizes.h2} * ${fontSize/baseFontSize})`;
-          });
-          textContainer.querySelectorAll('h3').forEach(el => {
-            el.style.fontSize = `calc(${originalSizes.h3} * ${fontSize/baseFontSize})`;
-          });
-          textContainer.querySelectorAll('p').forEach(el => {
-            el.style.fontSize = `calc(${originalSizes.p} * ${fontSize/baseFontSize})`;
-          });
-        }
-      }
-
       // Navigate to specific slide
       function goTo(nextIdx) {
         if (isAnimating || nextIdx === current) return;
@@ -1667,9 +1618,6 @@
           to.style.opacity = '';
           to.style.zIndex = '';
           to.setAttribute('aria-hidden', 'false');
-
-          // Adjust text size for the new slide
-          adjustTextSize(to);
 
           current = nextIdx;
           updateDots(current);
@@ -1729,16 +1677,6 @@
 
       // Initialize progress bar
       updateProgress(current);
-      
-      // Adjust text size on window resize
-      window.addEventListener('resize', () => {
-        adjustTextSize(slides[current]);
-      });
-      
-      // Initial adjustment for the first slide
-      setTimeout(() => {
-        adjustTextSize(slides[current]);
-      }, 100);
     });
   </script>
 </body>
