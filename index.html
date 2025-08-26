@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1a4b8c;
-      --primary-light: #4dabf7;
-      --primary-bright: #339af0;
-      --primary-pale: #e7f5ff;
+      --primary: #5d69be;
+      --primary-light: #8c95d8;
+      --primary-bright: #727fd6;
+      --primary-pale: #e8eaff;
       --secondary: #d35400;
       --accent: #16a085;
       --text: #2c3e50;
@@ -40,6 +40,7 @@
       color: var(--text);
       line-height: 1.6;
       overflow: hidden;
+      background: linear-gradient(135deg, #a7c0fd 0%, #c9b6f0 100%);
     }
 
     .slider {
@@ -47,7 +48,7 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
-      background: var(--white);
+      background: transparent;
     }
 
     .slides {
@@ -67,12 +68,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
       transform: translateX(100%);
       opacity: 0;
       transition: transform 0.6s ease, opacity 0.6s ease;
       z-index: 1;
       overflow: auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(93, 105, 190, 0.2);
     }
 
     .slide.active {
@@ -90,15 +94,16 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      background: linear-gradient(135deg, var(--primary), #8c71d9);
       position: relative;
+      border-radius: 0;
     }
 
     .title-background {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(77, 171, 247, 0.3), transparent 30%),
-                  radial-gradient(circle at 70% 30%, rgba(26, 75, 140, 0.4), transparent 30%);
+      background: radial-gradient(circle at 30% 70%, rgba(140, 149, 216, 0.5), transparent 30%),
+                  radial-gradient(circle at 70% 30%, rgba(93, 105, 190, 0.6), transparent 30%);
       z-index: 1;
     }
 
@@ -110,8 +115,9 @@
 
     .particle {
       position: absolute;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
     }
 
     .particle:nth-child(1) {
@@ -119,7 +125,7 @@
       height: 8px;
       top: 20%;
       left: 20%;
-      animation: float 15s infinite ease-in-out;
+      animation-delay: 0s;
     }
 
     .particle:nth-child(2) {
@@ -127,7 +133,7 @@
       height: 12px;
       top: 60%;
       left: 10%;
-      animation: float 18s infinite ease-in-out 2s;
+      animation-delay: 2s;
     }
 
     .particle:nth-child(3) {
@@ -135,7 +141,7 @@
       height: 6px;
       top: 40%;
       left: 80%;
-      animation: float 12s infinite ease-in-out 1s;
+      animation-delay: 1s;
     }
 
     .particle:nth-child(4) {
@@ -143,7 +149,7 @@
       height: 10px;
       top: 70%;
       left: 70%;
-      animation: float 20s infinite ease-in-out 3s;
+      animation-delay: 3s;
     }
 
     .particle:nth-child(5) {
@@ -151,7 +157,7 @@
       height: 5px;
       top: 30%;
       left: 40%;
-      animation: float 14s infinite ease-in-out 0.5s;
+      animation-delay: 0.5s;
     }
 
     .particle:nth-child(6) {
@@ -159,7 +165,7 @@
       height: 7px;
       top: 80%;
       left: 50%;
-      animation: float 16s infinite ease-in-out 2.5s;
+      animation-delay: 2.5s;
     }
 
     @keyframes float {
@@ -185,6 +191,7 @@
       margin: 0 0 24px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
       letter-spacing: 1px;
+      animation: fadeInUp 1s ease-out;
     }
 
     .subtitle {
@@ -195,6 +202,8 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+      opacity: 0;
     }
 
     .decorative-line {
@@ -204,6 +213,9 @@
       margin: 32px auto;
       border-radius: 2px;
       opacity: 0.8;
+      animation: scaleIn 1s ease-out 0.6s forwards;
+      transform: scaleX(0);
+      transform-origin: center;
     }
 
     .subject-tag {
@@ -215,9 +227,11 @@
       font-size: 16px;
       letter-spacing: 1px;
       backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-out 0.9s forwards;
+      opacity: 0;
     }
 
-    /* School info styles - MODIFICADO */
+    /* School info styles */
     .school-info {
       margin-top: 50px;
       text-align: center;
@@ -225,6 +239,8 @@
       font-size: 18px;
       z-index: 3;
       padding: 0 20px;
+      animation: fadeIn 1s ease-out 1.2s forwards;
+      opacity: 0;
     }
 
     .school-name {
@@ -250,11 +266,6 @@
       width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-    }
-
-    .text {
-      flex: 1;
-      max-width: 700px;
     }
 
     /* Headings */
@@ -313,6 +324,12 @@
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .image-frame:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(93, 105, 190, 0.25);
     }
 
     .slide-image {
@@ -320,6 +337,11 @@
       height: 350px;
       object-fit: cover;
       display: block;
+      transition: var(--transition);
+    }
+
+    .slide-image:hover {
+      transform: scale(1.05);
     }
 
     .image-caption {
@@ -346,17 +368,25 @@
       text-align: center;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
     }
 
     .info-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-md);
+      background: rgba(93, 105, 190, 0.05);
     }
 
     .card-icon {
       font-size: 32px;
       color: var(--primary-light);
       margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .info-card:hover .card-icon {
+      transform: scale(1.2);
+      color: var(--primary);
     }
 
     .info-card h3 {
@@ -392,6 +422,14 @@
     .timeline-item {
       position: relative;
       margin-bottom: 30px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+    }
+
+    .timeline-item.animated {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .timeline-marker {
@@ -403,6 +441,12 @@
       border-radius: 50%;
       background: var(--primary);
       border: 3px solid var(--primary-light);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover .timeline-marker {
+      transform: scale(1.3);
+      background: var(--primary-bright);
     }
 
     .timeline-content {
@@ -410,6 +454,13 @@
       padding: 20px;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+    }
+
+    .timeline-content:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
     }
 
     .timeline-content h3 {
@@ -435,6 +486,7 @@
     .table-row {
       display: flex;
       border-bottom: 1px solid var(--border);
+      transition: var(--transition);
     }
 
     .table-header {
@@ -454,7 +506,8 @@
     }
 
     .table-row:not(.table-header):hover {
-      background: #eef2f7;
+      background: rgba(93, 105, 190, 0.1);
+      transform: translateX(5px);
     }
 
     /* Process flow */
@@ -482,6 +535,14 @@
       text-align: center;
       flex: 1;
       padding: 0 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .process-step.animated {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .step-number {
@@ -497,6 +558,12 @@
       font-weight: bold;
       font-size: 18px;
       box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .process-step:hover .step-number {
+      transform: scale(1.2);
+      background: var(--primary-bright);
     }
 
     .step-content {
@@ -504,6 +571,13 @@
       padding: 20px;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+    }
+
+    .process-step:hover .step-content {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
     }
 
     .step-content h3 {
@@ -516,7 +590,7 @@
       font-size: 16px;
     }
 
-    /* Composition chart - CORRIGIDO */
+    /* Composition chart */
     .composition-chart {
       margin: 30px 0;
       display: flex;
@@ -542,7 +616,15 @@
       color: white;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-      min-height: 30px; /* Altura mínima para garantir que o texto caiba */
+      min-height: 30px;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .chart-bar.animated {
+      opacity: 1;
+      transform: scaleX(1);
     }
 
     .chart-bar:hover {
@@ -551,7 +633,7 @@
     }
 
     .others-bar {
-      height: 30px; /* Altura fixa para a barra de outros gases */
+      height: 30px;
       background: linear-gradient(90deg, #c678dd, #e06c75, #d19a66);
       color: var(--text);
       text-shadow: none;
@@ -578,6 +660,12 @@
       align-items: flex-start;
       gap: 12px;
       margin: 20px 0;
+      transition: var(--transition);
+    }
+
+    .note-box:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-sm);
     }
 
     .note-box i {
@@ -607,11 +695,20 @@
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .protection-item.animated {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .protection-item:hover {
       transform: translateX(5px);
       box-shadow: var(--shadow-md);
+      background: rgba(93, 105, 190, 0.05);
     }
 
     .protection-icon {
@@ -625,6 +722,12 @@
       justify-content: center;
       font-size: 24px;
       flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .protection-item:hover .protection-icon {
+      transform: rotate(15deg) scale(1.1);
+      background: var(--primary-bright);
     }
 
     .protection-text h3 {
@@ -651,11 +754,20 @@
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .importance-card.animated {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .importance-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-md);
+      background: rgba(93, 105, 190, 0.05);
     }
 
     .importance-card h3 {
@@ -669,6 +781,12 @@
     .importance-card h3 i {
       font-size: 20px;
       color: var(--primary-light);
+      transition: var(--transition);
+    }
+
+    .importance-card:hover h3 i {
+      transform: scale(1.3);
+      color: var(--primary);
     }
 
     .importance-card p {
@@ -690,11 +808,20 @@
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .curiosity-item.animated {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .curiosity-item:hover {
       transform: translateX(5px);
       box-shadow: var(--shadow-md);
+      background: rgba(93, 105, 190, 0.05);
     }
 
     .curiosity-icon {
@@ -708,6 +835,11 @@
       justify-content: center;
       font-size: 20px;
       flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .curiosity-item:hover .curiosity-icon {
+      transform: rotate(15deg) scale(1.1);
     }
 
     .curiosity-content h3 {
@@ -738,12 +870,33 @@
       background: rgba(255, 255, 255, 0.7);
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(93, 105, 190, 0.1);
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .key-point.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .key-point:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .key-point i {
       color: var(--primary);
       font-size: 18px;
       width: 24px;
+      transition: var(--transition);
+    }
+
+    .key-point:hover i {
+      transform: scale(1.3);
+      color: var(--primary-bright);
     }
 
     .key-point span {
@@ -759,6 +912,12 @@
       margin: 30px 0;
       text-align: center;
       box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .final-message:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(93, 105, 190, 0.3);
     }
 
     .final-message p {
@@ -784,6 +943,13 @@
       font-family: 'Playfair Display', serif;
       text-align: center;
       margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     /* Controls */
@@ -859,6 +1025,45 @@
       background: var(--primary-light);
       width: 0%;
       transition: width 0.3s ease;
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      z-index: 0;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, 40px) rotate(90deg); }
+      50% { transform: translate(0, 80px) rotate(180deg); }
+      75% { transform: translate(-20px, 40px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
     }
 
     /* Responsive */
@@ -1091,6 +1296,12 @@
   </style>
 </head>
 <body>
+  <!-- Floating background elements -->
+  <div class="floating-element" style="width: 100px; height: 100px; background: #a7c0fd; top: 10%; left: 5%; animation-delay: 0s;"></div>
+  <div class="floating-element" style="width: 150px; height: 150px; background: #c9b6f0; top: 60%; left: 80%; animation-delay: -5s;"></div>
+  <div class="floating-element" style="width: 80px; height: 80px; background: #8c95d8; top: 30%; left: 90%; animation-delay: -10s;"></div>
+  <div class="floating-element" style="width: 120px; height: 120px; background: #b4a0e5; top: 80%; left: 10%; animation-delay: -15s;"></div>
+
   <main class="slider" aria-roledescription="carousel">
     <div class="slides" id="slides">
 
@@ -1112,7 +1323,7 @@
           <div class="decorative-line"></div>
           <div class="subject-tag">Ciências da Terra</div>
           
-          <!-- Informações da escola e integrantes adicionadas AQUI (modificado) -->
+          <!-- Informações da escola e integrantes -->
           <div class="school-info">
             <div class="school-name">C.E.M Quilombola Anajatubense</div>
             <div class="participants">Integrantes: André, Breno Ryan, Carlos Daniel, David Renan, Davi Cardoso, Guilherme Oliveira, Joseph, Kleber Lucas, Wanderson</div>
@@ -1150,7 +1361,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide2.jpg" alt="Camadas da atmosfera terrestre" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Camadas+da+Atmosfera" alt="Camadas da atmosfera terrestre" class="slide-image">
             </div>
             <div class="image-caption">Representação das camadas da atmosfera terrestre</div>
           </div>
@@ -1192,7 +1403,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide3.jpg" alt="Vulcão representando a formação da atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Vulcões+Primitivos" alt="Vulcão representando a formação da atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Representação da desgaseificação vulcânica na Terra primitiva</div>
           </div>
@@ -1228,7 +1439,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide4.jpg" alt="Transformações atmosféricas" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Transformações" alt="Transformações atmosféricas" class="slide-image">
             </div>
             <div class="image-caption">Processos de transformação na atmosfera terrestre</div>
           </div>
@@ -1278,14 +1489,14 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide5.jpg" alt="Aumento do oxigênio na atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Oxigênio" alt="Aumento do oxigênio na atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Representação do aumento de oxigênio na atmosfera terrestre</div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 6: Composição Atual - CORRIGIDO -->
+      <!-- SLIDE 6: Composição Atual -->
       <section class="slide" data-index="5" aria-hidden="true">
         <div class="content-wrap">
           <div class="text">
@@ -1363,7 +1574,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide7.jpg" alt="Proteção atmosférica" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Proteção" alt="Proteção atmosférica" class="slide-image">
             </div>
             <div class="image-caption">A atmosfera como escudo protetor do planeta Terra</div>
           </div>
@@ -1385,7 +1596,7 @@
               
               <div class="importance-card">
                 <h3><i class="fas fa-tint"></i> Ciclo Hidrológico</h3>
-                <p>Permite a evaporação, condensação e precipitção da água</p>
+                <p>Permette a evaporação, condensação e precipitção da água</p>
               </div>
               
               <div class="importance-card">
@@ -1395,12 +1606,12 @@
               
               <div class="importance-card">
                 <h3><i class="fas fa-broadcast-tower"></i> Comunicação</h3>
-                <p>Permite a propagação de ondas sonoras e de rádio para comunicação</p>
+                <p>Permette a propagação de ondas sonoras e de rádio para comunicação</p>
               </div>
               
               <div class="importance-card">
                 <h3><i class="fas fa-plane"></i> Transporte</h3>
-                <p>Permite o voo de aves, insetos e aeronaves através do ar</p>
+                <p>Permette o voo de aves, insetos e aeronaves através do ar</p>
               </div>
               
               <div class="importance-card">
@@ -1411,7 +1622,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide8.jpg" alt="Importância da atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Importância" alt="Importância da atmosfera" class="slide-image">
             </div>
             <div class="image-caption">A relação vital entre atmosfera, clima và biosfera</div>
           </div>
@@ -1453,7 +1664,7 @@
           </div>
           <div class="slide-image-container">
             <div class="image-frame">
-              <img src="assets/slide9.jpg" alt="Curiosidades sobre a atmosfera" class="slide-image">
+              <img src="https://placehold.co/600x400/5d69be/ffffff?text=Curiosidades" alt="Curiosidades sobre a atmosfera" class="slide-image">
             </div>
             <div class="image-caption">Fenômenos atmosféricos fascinantes</div>
           </div>
@@ -1557,6 +1768,65 @@
         }
       });
 
+      // Animate elements when slide becomes active
+      function animateSlideElements(slide) {
+        // Animate timeline items
+        const timelineItems = slide.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('animated');
+          }, index * 200);
+        });
+
+        // Animate process steps
+        const processSteps = slide.querySelectorAll('.process-step');
+        processSteps.forEach((step, index) => {
+          setTimeout(() => {
+            step.classList.add('animated');
+          }, index * 200);
+        });
+
+        // Animate chart bars
+        const chartBars = slide.querySelectorAll('.chart-bar');
+        chartBars.forEach((bar, index) => {
+          setTimeout(() => {
+            bar.classList.add('animated');
+          }, index * 300);
+        });
+
+        // Animate protection items
+        const protectionItems = slide.querySelectorAll('.protection-item');
+        protectionItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('animated');
+          }, index * 200);
+        });
+
+        // Animate importance cards
+        const importanceCards = slide.querySelectorAll('.importance-card');
+        importanceCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('animated');
+          }, index * 150);
+        });
+
+        // Animate curiosity items
+        const curiosityItems = slide.querySelectorAll('.curiosity-item');
+        curiosityItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('animated');
+          }, index * 200);
+        });
+
+        // Animate key points
+        const keyPoints = slide.querySelectorAll('.key-point');
+        keyPoints.forEach((point, index) => {
+          setTimeout(() => {
+            point.classList.add('animated');
+          }, index * 200);
+        });
+      }
+
       // Update progress bar
       function updateProgress(idx) {
         const progress = ((idx + 1) / slides.length) * 100;
@@ -1622,6 +1892,10 @@
           current = nextIdx;
           updateDots(current);
           updateProgress(current);
+          
+          // Animate elements in the new active slide
+          animateSlideElements(to);
+          
           isAnimating = false;
         }
 
@@ -1675,8 +1949,9 @@
         }
       }, {passive: true});
 
-      // Initialize progress bar
+      // Initialize progress bar and animate first slide elements
       updateProgress(current);
+      animateSlideElements(slides[current]);
     });
   </script>
 </body>
