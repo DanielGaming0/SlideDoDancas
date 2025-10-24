@@ -3,28 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vanguard — Moda Masculina Premium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Conceito de Território</title>
+  
+  <!-- FONTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS EMBUTIDO -->
   <style>
     :root {
-      --navy: #0f1c3f;
-      --deep-blue: #1e2b50;
-      --steel-blue: #2d3a5c;
-      --silver: #c0c6d4;
-      --light-silver: #e8eaf0;
-      --cream: #f8f9fc;
-      --white: #ffffff;
-      --text: #2c3e50;
-      --text-light: #5d6d7e;
-      --accent: #3498db;
-      --trans: 700ms;
-      --shadow-sm: 0 4px 12px rgba(15, 28, 63, 0.08);
-      --shadow-md: 0 8px 30px rgba(15, 28, 63, 0.12);
-      --shadow-lg: 0 15px 40px rgba(15, 28, 63, 0.15);
-      --radius-sm: 10px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
+      --primary-dark: #1a3c6e;
+      --primary-light: #2d5aa0;
+      --primary-bright: #3a6bd9;
+      --accent: #e6b325;
+      --accent-dark: #c4991f;
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --text-dark: #212529;
+      --text-light: #6c757d;
+      --trans-duration: 700ms;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes animated-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
     }
 
     * {
@@ -36,10 +57,11 @@
     html, body {
       height: 100%;
       font-family: 'Inter', Arial, sans-serif;
-      color: var(--text);
-      line-height: 1.6;
-      background-color: var(--cream);
-      overflow: hidden;
+      color: var(--text-dark);
+      line-height: 1.7;
+      background-color: #000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .slider {
@@ -47,7 +69,6 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
-      background: var(--cream);
     }
 
     .slides {
@@ -56,21 +77,20 @@
       height: 100%;
     }
 
-    /* Base slide */
     .slide {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      padding: 60px;
+      padding: 48px;
       display: flex;
       justify-content: center;
       align-items: center;
       transform: translateX(100%);
       opacity: 0;
-      transition: transform var(--trans) cubic-bezier(0.16, 1, 0.3, 1), 
-                  opacity var(--trans) ease;
+      transition: transform var(--trans-duration) cubic-bezier(0.65, 0, 0.35, 1), opacity var(--trans-duration) ease;
+      overflow: hidden;
     }
 
     .slide.active {
@@ -78,52 +98,116 @@
       opacity: 1;
       z-index: 2;
     }
-
-    /* Background patterns and gradients */
-    .slide:nth-child(odd) {
-      background: linear-gradient(135deg, var(--cream) 0%, var(--light-silver) 100%);
+    
+    .slide .animated {
+      opacity: 0;
     }
-
-    .slide:nth-child(even) {
-      background: linear-gradient(135deg, var(--light-silver) 0%, var(--cream) 100%);
+    .slide.active .animated {
+      animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
-
+    .slide.active .animated.delay-1 { animation-delay: 0.2s; }
+    .slide.active .animated.delay-2 { animation-delay: 0.4s; }
+    .slide.active .animated.delay-3 { animation-delay: 0.6s; }
+    
+    /* === SLIDE 1: CAPA === */
     .slide--title {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 50%, var(--steel-blue) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: var(--bg-white);
+      padding: 40px;
       position: relative;
       overflow: hidden;
     }
-
-    .slide--title::before {
-      content: '';
+    
+    .title-background {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(52, 152, 219, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(52, 152, 219, 0.12) 0%, transparent 50%);
+      inset: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(45, 90, 160, 0.3), transparent 30%),
+                  radial-gradient(circle at 70% 30%, rgba(26, 60, 110, 0.4), transparent 30%);
       z-index: 1;
     }
+    
+    .title-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .title-wrap {
+      max-width: 900px;
+    }
+    
+    .slide--title h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 35px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
+    }
+    
+    .subject-tag {
+      display: inline-block;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 30px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+    }
+    
+    .authors-block {
+      font-family: 'Inter', sans-serif;
+      color: rgba(255,255,255,0.95);
+    }
+    
+    .authors-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    
+    .authors-names {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 25px;
+    }
+    
+    .title-footer {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: rgba(255,255,255,0.9);
+        letter-spacing: 0.5px;
+    }
 
-    /* Content layout */
+    /* === SLIDES DE CONTEÚDO === */
+    .slide:not(.slide--title) {
+      background: linear-gradient(135deg, #0a1a35, #1a3c6e, #2d5aa0, #3a6bd9);
+      background-size: 400% 400%;
+      animation: animated-gradient 20s ease infinite;
+      color: var(--bg-white);
+    }
+    
+    /* Layout moderno para slides de conteúdo */
     .content-wrap {
       display: flex;
-      gap: 80px;
-      align-items: center;
+      gap: 60px;
+      align-items: flex-start;
       width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-      position: relative;
-      z-index: 3;
-    }
-
-    .content-wrap.column {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 40px;
     }
 
     .text {
@@ -131,741 +215,315 @@
       max-width: 700px;
     }
 
-    /* Headings */
-    h2 {
-      font-size: 44px;
-      color: var(--navy);
-      margin-bottom: 24px;
-      font-weight: 700;
-      position: relative;
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    h2::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--accent);
-      margin-top: 16px;
-      border-radius: 2px;
-      animation: expandWidth 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    h3 {
-      font-size: 28px;
-      color: var(--navy);
-      margin: 24px 0 16px;
-      font-weight: 600;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--text);
-      margin-bottom: 20px;
-      animation: fadeIn 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .lead-text {
-      font-size: 22px;
-      color: var(--text-light);
-      max-width: 800px;
-      font-weight: 300;
-    }
-
-    .highlight-text {
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.05) 100%);
-      padding: 24px;
-      border-radius: var(--radius-md);
-      margin: 24px 0;
-      font-size: 18px;
-      border-left: 4px solid var(--accent);
-      box-shadow: var(--shadow-sm);
-      animation: fadeInUp 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    /* Title slide */
-    .slide--title .title-wrap {
-      position: relative;
-      z-index: 3;
-      padding: 0 24px;
-      max-width: 900px;
-      text-align: center;
-    }
-
-    .slide--title h1 {
+    /* Estilos de texto modernizados */
+    .slide:not(.slide--title) h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 72px;
-      color: var(--white);
-      line-height: 1.05;
-      margin: 0;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--bg-white);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .slide--title span {
+    .slide:not(.slide--title) h2::after {
+      content: '';
       display: block;
-      font-size: 52px;
-      color: var(--silver);
-      animation: fadeInUp 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .subtitle {
-      font-size: 24px;
-      color: rgba(255,255,255,0.85);
-      margin-top: 20px;
-      font-weight: 300;
-      animation: fadeInUp 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    /* Icon circles */
-    .icon-circle {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-lg);
-      background: linear-gradient(135deg, var(--navy), var(--steel-blue));
-      animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .icon-circle::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: linear-gradient(135deg, var(--accent), #5dade2);
-      z-index: -1;
-      border-radius: 50%;
-      opacity: 0.2;
-    }
-
-    .icon-circle i {
-      font-size: 60px;
-      color: var(--accent);
-    }
-
-    /* Lists */
-    .features, .bullet {
-      margin-left: 0;
-      padding-left: 0;
-      list-style: none;
-    }
-
-    .features li, .bullet li {
-      margin-bottom: 18px;
-      font-size: 18px;
-      padding-left: 40px;
-      position: relative;
-      animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .features li:nth-child(1) { animation-delay: 0.2s; }
-    .features li:nth-child(2) { animation-delay: 0.4s; }
-    .features li:nth-child(3) { animation-delay: 0.6s; }
-    .features li:nth-child(4) { animation-delay: 0.8s; }
-    .features li:nth-child(5) { animation-delay: 1s; }
-
-    .bullet li:nth-child(1) { animation-delay: 0.2s; }
-    .bullet li:nth-child(2) { animation-delay: 0.4s; }
-    .bullet li:nth-child(3) { animation-delay: 0.6s; }
-    .bullet li:nth-child(4) { animation-delay: 0.8s; }
-
-    .features li::before, .bullet li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 24px;
-      height: 24px;
-      background-color: var(--accent);
-      border-radius: 50%;
-      opacity: 0.15;
-    }
-
-    .feature-icon {
-      margin-right: 12px;
-      font-size: 20px;
-      color: var(--accent);
-    }
-
-    /* Highlight boxes */
-    .highlight-box {
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.05) 100%);
-      padding: 24px;
-      border-radius: var(--radius-md);
-      margin-top: 28px;
-      border-left: 4px solid var(--accent);
-      box-shadow: var(--shadow-sm);
-      animation: fadeInUp 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .highlight-box p {
-      margin: 0;
-      font-style: italic;
-      color: var(--navy);
-    }
-
-    /* Stats grids */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      width: 100%;
-      max-width: 700px;
-      margin: 28px 0;
-    }
-
-    .stat-item {
-      background: white;
-      padding: 24px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      width: 60px;
       height: 4px;
       background: var(--accent);
-    }
-
-    .stat-item:nth-child(1) { animation-delay: 0.2s; }
-    .stat-item:nth-child(2) { animation-delay: 0.4s; }
-    .stat-item:nth-child(3) { animation-delay: 0.6s; }
-
-    .stat-item:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .stat-number {
-      font-size: 42px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 16px;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    /* Community stats */
-    .community-stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
-
-    .stat-pill {
-      background: linear-gradient(135deg, var(--accent), #5dade2);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      box-shadow: var(--shadow-sm);
-      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .stat-pill:nth-child(1) { animation-delay: 0.2s; }
-    .stat-pill:nth-child(2) { animation-delay: 0.4s; }
-    .stat-pill:nth-child(3) { animation-delay: 0.6s; }
-
-    /* Work grid */
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      width: 100%;
-      margin-top: 32px;
-    }
-
-    .work-card {
-      background: white;
-      padding: 32px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .work-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--accent);
-    }
-
-    .work-card:nth-child(1) { animation-delay: 0.2s; }
-    .work-card:nth-child(2) { animation-delay: 0.4s; }
-
-    .work-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .work-icon {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .work-card h3 {
-      color: var(--navy);
-      margin-bottom: 16px;
-      font-size: 22px;
-    }
-
-    .work-card p {
-      font-size: 16px;
-      color: var(--text-light);
-    }
-
-    /* Timeline */
-    .timeline-container {
-      position: relative;
-      margin: 28px 0;
-      padding-left: 40px;
-    }
-
-    .timeline-container::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: rgba(52, 152, 219, 0.2);
+      margin-top: 12px;
       border-radius: 2px;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 32px;
-      animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-    .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-    .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .timeline-item::before {
-      content: '';
       position: absolute;
-      left: -46px;
-      top: 5px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 4px solid white;
-      box-shadow: 0 0 0 3px var(--accent);
+      bottom: -12px;
+      left: 0;
     }
 
-    .year {
-      font-weight: 700;
-      color: var(--navy);
-      font-size: 20px;
+    .slide:not(.slide--title) p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
     }
 
-    .event {
-      color: var(--text);
-      margin-top: 6px;
+    .slide:not(.slide--title) blockquote {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid var(--accent);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.05rem;
+      padding: 20px 25px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      backdrop-filter: blur(10px);
     }
 
-    /* Culture grid */
-    .culture-grid {
+    .slide:not(.slide--title) blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Cards de informação */
+    .info-cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      width: 100%;
-      margin-top: 28px;
+      gap: 20px;
+      margin: 30px 0;
     }
 
-    .culture-card {
-      background: white;
+    .info-card {
+      background: rgba(255, 255, 255, 0.1);
       padding: 24px;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-      position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
-    .culture-card::before {
-      content: '';
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .info-card h3 {
+      font-size: 18px;
+      margin: 0 0 12px;
+      color: var(--bg-white);
+    }
+
+    .info-card p {
+      font-size: 14px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Elementos visuais */
+    .visual-element {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .map-container {
+      width: 100%;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .map-placeholder {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .image-caption {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      font-style: italic;
+      margin-top: 12px;
+      padding: 0 10px;
+    }
+
+    /* Objetos Flutuantes */
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .background-animation li {
+      position: absolute;
+      display: block;
+      list-style: none;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      animation: float 25s linear infinite alternate;
+      bottom: -150px;
+      border-radius: 50%;
+    }
+    
+    .background-animation li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+    .background-animation li:nth-child(2) { left: 10%; width: 30px; height: 30px; animation-delay: 2s; animation-duration: 12s; }
+    .background-animation li:nth-child(3) { left: 70%; width: 25px; height: 25px; animation-delay: 4s; }
+    .background-animation li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+    .background-animation li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+    .background-animation li:nth-child(6) { left: 85%; width: 110px; height: 110px; animation-delay: 3s; }
+    .background-animation li:nth-child(7) { left: 5%; width: 150px; height: 150px; animation-delay: 7s; }
+
+    /* Layout do slide final */
+    .final-slide-layout {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px;
+        gap: 60px;
+        height: 100%;
+    }
+    
+    .final-slide-layout .content-wrap { 
+      height: auto; 
+      max-height: 90vh; 
+    }
+    
+    .thank-you-side {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: var(--accent);
+        font-family: 'Playfair Display', serif;
+        font-size: 5rem;
+        font-weight: 500;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        animation-name: fadeIn;
+        animation-duration: 1.2s;
+        animation-delay: 0.5s;
+    }
+
+    /* Controles */
+    .controls { 
+      z-index: 10; 
+      position: absolute; 
+      left: 0; 
+      right: 0; 
+      bottom: 24px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 24px; 
+    }
+    
+    .controls button { 
+      background: var(--primary-dark); 
+      color: white;
+      border: none; 
+      width: 50px; 
+      height: 50px; 
+      border-radius: 50%; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      box-shadow: var(--shadow-md); 
+      transition: all 0.3s ease; 
+    }
+    
+    .controls button:hover { 
+      background: var(--primary-light); 
+      transform: scale(1.1); 
+    }
+    
+    .controls button i { 
+      font-size: 20px; 
+    }
+    
+    .dots { 
+      display: flex; 
+      gap: 12px; 
+    }
+    
+    .dot { 
+      width: 12px; 
+      height: 12px; 
+      border-radius: 50%; 
+      background: rgba(255,255,255,0.5); 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+      border: none; 
+    }
+    
+    .dot.active { 
+      background: var(--accent); 
+      transform: scale(1.3); 
+    }
+
+    /* Progress bar */
+    .progress-container {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--accent);
-    }
-
-    .culture-card:nth-child(1) { animation-delay: 0.2s; }
-    .culture-card:nth-child(2) { animation-delay: 0.4s; }
-    .culture-card:nth-child(3) { animation-delay: 0.6s; }
-    .culture-card:nth-child(4) { animation-delay: 0.8s; }
-
-    .culture-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .culture-icon {
-      font-size: 40px;
-      margin-bottom: 16px;
-      color: var(--accent);
-    }
-
-    .culture-card h3 {
-      color: var(--navy);
-      margin-bottom: 12px;
-      font-size: 18px;
-    }
-
-    .culture-card p {
-      font-size: 14px;
-      color: var(--text-light);
-    }
-
-    /* Controls */
-    .controls {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
+      background: rgba(255,255,255,0.2);
       z-index: 10;
     }
 
-    .controls button {
-      background: var(--navy);
-      color: white;
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-lg);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .controls button:hover {
-      background: var(--accent);
-      transform: scale(1.1);
-    }
-
-    .controls button i {
-      font-size: 24px;
-    }
-
-    .dots {
-      display: flex;
-      gap: 16px;
-    }
-
-    .dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: none;
-    }
-
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.4);
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { 
-        opacity: 0; 
-      }
-      to { 
-        opacity: 1; 
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes expandWidth {
-      from {
-        width: 0;
-      }
-      to {
-        width: 80px;
-      }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    /* Floating elements */
-    .floating-elements {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    .progress-bar {
       height: 100%;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .floating-element {
-      position: absolute;
       background: var(--accent);
-      opacity: 0.1;
-      border-radius: 50%;
-      animation: float 20s infinite linear;
+      width: 0%;
+      transition: width 0.3s ease;
     }
 
-    .floating-element:nth-child(1) {
-      width: 100px;
-      height: 100px;
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      width: 150px;
-      height: 150px;
-      top: 70%;
-      left: 80%;
-      animation-delay: -5s;
-    }
-
-    .floating-element:nth-child(3) {
-      width: 70px;
-      height: 70px;
-      top: 50%;
-      left: 5%;
-      animation-delay: -10s;
-    }
-
-    .floating-element:nth-child(4) {
-      width: 120px;
-      height: 120px;
-      top: 20%;
-      left: 85%;
-      animation-delay: -15s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      25% {
-        transform: translate(20px, 30px) rotate(90deg);
-      }
-      50% {
-        transform: translate(0, 60px) rotate(180deg);
-      }
-      75% {
-        transform: translate(-20px, 30px) rotate(270deg);
-      }
-      100% {
-        transform: translate(0, 0) rotate(360deg);
-      }
-    }
-
-    /* Geometric patterns */
-    .geometric-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.03;
-    }
-
-    .geometric-pattern::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(circle at 25% 25%, var(--accent) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, var(--accent) 2px, transparent 2px);
-      background-size: 50px 50px;
-    }
-
-    /* Responsive */
+    /* Responsividade */
     @media (max-width: 1200px) {
       .content-wrap {
-        gap: 60px;
-      }
-      
-      .slide {
-        padding: 50px;
+        gap: 40px;
       }
     }
 
     @media (max-width: 1024px) {
-      .work-grid, .culture-grid {
+      .info-cards {
         grid-template-columns: 1fr;
-      }
-      
-      .slide {
-        padding: 40px;
       }
     }
 
+    @media (max-width: 992px) {
+        .final-slide-layout { 
+          grid-template-columns: 1fr; 
+          text-align: center; 
+        }
+        .thank-you-side { 
+          display: none; 
+        }
+    }
+
     @media (max-width: 768px) {
-      .slide {
-        padding: 30px 20px;
+      .slide { 
+        padding: 40px 24px; 
         flex-direction: column;
-        overflow-y: auto;
       }
-      
       .content-wrap {
         flex-direction: column;
-        gap: 40px;
+        gap: 32px;
       }
-      
-      .text {
-        max-width: 100%;
+      .visual-element {
+        width: 100%;
+        order: -1;
+        margin-bottom: 20px;
       }
-      
-      .icon-circle {
-        width: 120px;
-        height: 120px;
+      .slide:not(.slide--title) h2 { 
+        font-size: 2.2rem; 
       }
-      
-      .icon-circle i {
-        font-size: 48px;
+      .slide:not(.slide--title) p { 
+        font-size: 1rem; 
       }
-      
-      h2 {
-        font-size: 32px;
-      }
-      
-      h3 {
-        font-size: 22px;
-      }
-      
-      p, .features li, .bullet li {
-        font-size: 16px;
-      }
-      
-      .slide--title h1 {
-        font-size: 52px;
-      }
-      
-      .slide--title span {
-        font-size: 38px;
-      }
-      
-      .subtitle {
-        font-size: 20px;
-      }
-      
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      .controls {
-        bottom: 20px;
-      }
-      
-      .controls button {
-        width: 50px;
-        height: 50px;
-      }
-      
-      .dot {
-        width: 12px;
-        height: 12px;
+      .slide--title h1 { 
+        font-size: 2.5rem; 
       }
     }
 
@@ -873,35 +531,19 @@
       .slide {
         padding: 24px 16px;
       }
-      
       .controls {
         bottom: 16px;
       }
-      
       .controls button {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
       }
-      
       .dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
       }
-      
-      .slide--title h1, .slide--title span {
-        font-size: 40px;
-      }
-      
-      .subtitle {
-        font-size: 18px;
-      }
-      
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .work-grid, .culture-grid {
-        grid-template-columns: 1fr;
+      .slide--title h1 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -910,258 +552,246 @@
   <main class="slider" aria-roledescription="carousel">
     <div class="slides" id="slides">
     
-      <!-- SLIDE 1: Título com logo e nomes -->
-      <section class="slide slide--title" data-index="0" aria-hidden="false">
-        <div class="floating-elements">
-          <div class="floating-element"></div>
-          <div class="floating-element"></div>
-          <div class="floating-element"></div>
-          <div class="floating-element"></div>
-        </div>
-        <div class="geometric-pattern"></div>
-        <div class="title-wrap">
-          <h1>VANGUARD<br><span>Moda Masculina Premium</span></h1>
-          <div class="subtitle">O novo padrão em elegância masculina</div>
-        </div>
-      </section>
-
-      <!-- SLIDE 2: Apresentação da Empresa -->
-      <section class="slide" data-index="1" aria-hidden="true">
-        <div class="geometric-pattern"></div>
-        <div class="content-wrap">
-          <div class="text">
-            <h2>Vanguard - Moda Masculina</h2>
-            <p>A Vanguard redefine o conceito de moda masculina, combinando sofisticação atemporal com inovação contemporânea. Criamos peças que transcendem tendências passageiras.</p>
-            <ul class="bullet">
-              <li>Design premium com atenção aos detalhes</li>
-              <li>Tecnologia têxtil de última geração</li>
-              <li>Sustentabilidade integrada ao luxo</li>
-            </ul>
-          </div>
-          <div class="icon-circle">
-            <i class="fas fa-crown"></i>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 3: Problema que Resolvemos -->
-      <section class="slide" data-index="2" aria-hidden="true">
-        <div class="geometric-pattern"></div>
-        <div class="content-wrap">
-          <div class="text">
-            <h2>Excelência onde outros falham</h2>
-            <p>Homens que buscam qualidade superior encontram lacunas no mercado de moda masculina:</p>
-            <ul class="features">
-              <li><span class="feature-icon">🎯</span> Falta de caimentos precisos para diferentes biotipos</li>
-              <li><span class="feature-icon">🌱</span> Opções limitadas de luxo sustentável</li>
-              <li><span class="feature-icon">📏</span> Qualidade inconsistente em marcas premium</li>
-              <li><span class="feature-icon">💼</span> Versatilidade insuficiente entre ocasiões</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 4: Público-Alvo -->
-      <section class="slide" data-index="3" aria-hidden="true">
-        <div class="geometric-pattern"></div>
-        <div class="content-wrap">
-          <div class="text">
-            <h2>O Homem Vanguard</h2>
-            <p>Executivos, empreendedores e profissionais que valorizam excelência, autenticidade e sofisticação discreta.</p>
-            <div class="stats-grid">
-              <div class="stat-item">
-                <div class="stat-number">30-50</div>
-                <div class="stat-label">Idade Principal</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">85%</div>
-                <div class="stat-label">Pós-Graduação</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">R$ 15K+</div>
-                <div class="stat-label">Renda Mensal</div>
+      <!-- SLIDE 1: CAPA -->
+      <section class="slide slide--title" data-index="0">
+        <div class="title-background"></div>
+        <div class="title-content-wrapper">
+            <div class="title-wrap">
+              <div class="subject-tag animated">Geografia Política</div>
+              <h1 class="animated delay-1">CONCEITO DE TERRITÓRIO</h1>
+              <div class="authors-block animated delay-2">
+                <div class="authors-title">Apresentação por:</div>
+                <div class="authors-names">
+                  Carlos Daniel, Laís Santos, Ronald
+                </div>
+                <div class="title-footer">Geografia
+</div>
               </div>
             </div>
-            <div class="highlight-box">
-              <p>Nosso cliente não segue moda - ele define padrões. Valoriza qualidade superior e autenticidade acima de tudo.</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      <!-- SLIDE 5: Missão, Visão e Valores -->
-      <section class="slide" data-index="4" aria-hidden="true">
-        <div class="geometric-pattern"></div>
+      <!-- SLIDE 2: DEFINIÇÃO DE TERRITÓRIO -->
+      <section class="slide" data-index="1">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
         <div class="content-wrap">
           <div class="text">
-            <h2>Nossa Essência</h2>
-            <div class="work-grid">
-              <div class="work-card">
-                <div class="work-icon"><i class="fas fa-bullseye"></i></div>
-                <h3>Missão</h3>
-                <p>Elevar a experiência de moda masculina através de designs atemporais, qualidade excepcional e inovação responsável.</p>
+            <h2 class="animated"><i class="fas fa-map-marked-alt"></i> O QUE É TERRITÓRIO?</h2>
+            <p class="animated delay-1">Território pode ser definido como um <strong>espaço delimitado por fronteiras</strong> onde um grupo social, uma comunidade ou um Estado exerce soberania e controle.</p>
+            
+            <div class="info-cards">
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-border-all"></i></div>
+                <h3>Espaço Delimitado</h3>
+                <p>Área com limites definidos que separam o interior do exterior</p>
               </div>
-              <div class="work-card">
-                <div class="work-icon"><i class="fas fa-eye"></i></div>
-                <h3>Visão</h3>
-                <p>Ser reconhecida globalmente como a referência em moda masculina premium sustentável até 2030.</p>
+              
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-crown"></i></div>
+                <h3>Exercício de Soberania</h3>
+                <p>Capacidade de um grupo ou Estado de impor suas regras dentro dos limites territoriais</p>
               </div>
             </div>
-            <div class="highlight-text">
-              Nossos pilares: Excelência, Autenticidade, Inovação, Sustentabilidade e Sofisticação.
+            
+            <blockquote class="animated delay-3">
+              "O território não é apenas o espaço, mas o espaço apropriado por um grupo que nele exerce seu poder."
+              <cite>— Raffestin, Claude</cite>
+            </blockquote>
+          </div>
+          <div class="visual-element">
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-globe-americas" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p>Representação de um território delimitado</p>
+              </div>
             </div>
+            <div class="image-caption">Território como espaço delimitado e controlado</div>
           </div>
         </div>
       </section>
-
-      <!-- SLIDE 6: Produtos e Serviços -->
-      <section class="slide" data-index="5" aria-hidden="true">
-        <div class="geometric-pattern"></div>
+      
+      <!-- SLIDE 3: TERRITÓRIO E PODER -->
+      <section class="slide" data-index="2">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
         <div class="content-wrap">
           <div class="text">
-            <h2>Coleção Signature</h2>
-            <p>Peças meticulosamente desenvolvidas para homens que não aceitam compromissos com a qualidade:</p>
-            <ul class="bullet">
-              <li>Tailoring sob medida e semi-medida</li>
-              <li>Camisas com tecidos de fios longos egípcios</li>
-              <li>Calças com tecnologia anti-rugas</li>
-              <li>Acessórios em couro full-grain italiano</li>
-            </ul>
-            <div class="community-stats">
-              <div class="stat-pill">Investimento: R$ 290 - R$ 2.900</div>
-              <div class="stat-pill">Tamanhos: 46 a 56 + custom</div>
-              <div class="stat-pill">Cores: Paleta atemporal</div>
+            <h2 class="animated"><i class="fas fa-balance-scale"></i> TERRITÓRIO E PODER</h2>
+            <p class="animated delay-1">Existe uma <strong>relação indissociável</strong> entre território e poder. O controle sobre um território representa a capacidade de exercer autoridade, impor leis e definir normas.</p>
+            
+            <div class="info-cards">
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-landmark"></i></div>
+                <h3>Poder Político</h3>
+                <p>Capacidade de um Estado de exercer soberania sobre seu território e população</p>
+              </div>
+              
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                <h3>Controle Jurídico</h3>
+                <p>Estabelecimento e aplicação de leis dentro dos limites territoriais</p>
+              </div>
             </div>
+            
+            <p class="animated delay-3">A <strong>soberania territorial</strong> é um dos pilares do Estado moderno, permitindo que governos exerçam controle exclusivo sobre seu espaço geográfico.</p>
+          </div>
+          <div class="visual-element">
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-chess-queen" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p>Relação entre território e exercício de poder</p>
+              </div>
+            </div>
+            <div class="image-caption">O território como expressão de poder e controle</div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 7: Estratégia de Divulgação -->
-      <section class="slide" data-index="6" aria-hidden="true">
-        <div class="geometric-pattern"></div>
+      <!-- SLIDE 4: FRONTEIRAS COMO NORMAS -->
+      <section class="slide" data-index="3">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
         <div class="content-wrap">
           <div class="text">
-            <h2>Estratégia Exclusiva</h2>
-            <p>Abordagem sofisticada para conectar com nossa audiência premium:</p>
-            <div class="culture-grid">
-              <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-gem"></i></div>
-                <h3>Experiências VIP</h3>
-                <p>Showrooms privativos e consultoria de estilo personalizada</p>
+            <h2 class="animated"><i class="fas fa-map-signs"></i> FRONTEIRAS COMO NORMAS</h2>
+            <p class="animated delay-1">As fronteiras territoriais representam <strong>normas legais e sociais</strong> que definem os limites de jurisdição, identidade e pertencimento.</p>
+            
+            <div class="info-cards">
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-scale-balanced"></i></div>
+                <h3>Normas Legais</h3>
+                <p>Fronteiras estabelecidas por tratados, acordos e legislações internacionais</p>
               </div>
-              <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-handshake"></i></div>
-                <h3>Parcerias Estratégicas</h3>
-                <p>Colaborações com clubes exclusivos e resorts premium</p>
-              </div>
-              <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-store"></i></div>
-                <h3>Flagship Stores</h3>
-                <p>Lojas conceito em localizações icônicas</p>
-              </div>
-              <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Marketing Direto</h3>
-                <p>Conteúdo exclusivo para nossa lista selecionada</p>
+              
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h3>Normas Sociais</h3>
+                <p>Limites culturais, identitários e de pertencimento que transcendem as fronteiras físicas</p>
               </div>
             </div>
+            
+            <blockquote class="animated delay-3">
+              "As fronteiras não são apenas linhas no mapa, mas construções sociais que refletem relações de poder e identidade."
+              <cite>— Foucher, Michel</cite>
+            </blockquote>
+          </div>
+          <div class="visual-element">
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-border-style" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p>Fronteiras como construções legais e sociais</p>
+              </div>
+            </div>
+            <div class="image-caption">As fronteiras definem limites de jurisdição e identidade</div>
           </div>
         </div>
       </section>
-
-      <!-- SLIDE 8: Diferenciais Competitivos -->
-      <section class="slide" data-index="7" aria-hidden="true">
-        <div class="geometric-pattern"></div>
+      
+      <!-- SLIDE 5: MUDANÇAS TERRITORIAIS -->
+      <section class="slide" data-index="4">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
         <div class="content-wrap">
           <div class="text">
-            <h2>Excelência Inigualável</h2>
-            <ul class="features">
-              <li><span class="feature-icon">🌿</span> Sustentabilidade de luxo: materiais regenerativos</li>
-              <li><span class="feature-icon">👕</span> Caimentos científicos baseados em antropometria</li>
-              <li><span class="feature-icon">💚</span> Artesãos especializados com décadas de experiência</li>
-              <li><span class="feature-icon">🔄</span> Programa de revitalização de peças vitalícia</li>
-              <li><span class="feature-icon">💰</span> Valor de revista superior ao de concorrentes</li>
-            </ul>
+            <h2 class="animated"><i class="fas fa-exchange-alt"></i> MUDANÇAS TERRITORIAIS</h2>
+            <p class="animated delay-1">As fronteiras e os territórios estão em constante transformação, sujeitos a mudanças por meio de <strong>disputas de poder</strong>, negociações diplomáticas e transformações históricas.</p>
+            
+            <div class="info-cards">
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Negociação Diplomática</h3>
+                <p>Mudanças territoriais por meio de acordos e tratados internacionais</p>
+              </div>
+              
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-fist-raised"></i></div>
+                <h3>Conflitos e Disputas</h3>
+                <p>Alterações territoriais resultantes de guerras, invasões e conflitos armados</p>
+              </div>
+            </div>
+            
+            <p class="animated delay-3">A <strong>dinâmica territorial</strong> reflete as relações de força entre Estados e atores políticos, demonstrando que os limites geográficos são construções humanas sujeitas a transformação.</p>
+          </div>
+          <div class="visual-element">
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-arrows-alt-h" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p>Mudanças territoriais ao longo do tempo</p>
+              </div>
+            </div>
+            <div class="image-caption">As fronteiras são dinâmicas e sujeitas a transformações</div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 9: Viabilidade e Recursos -->
-      <section class="slide" data-index="8" aria-hidden="true">
-        <div class="geometric-pattern"></div>
+      <!-- SLIDE 6: TERRITÓRIO NA ATUALIDADE -->
+      <section class="slide" data-index="5">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
         <div class="content-wrap">
           <div class="text">
-            <h2>Estrutura de Excelência</h2>
-            <p>Modelo operacional que garante qualidade superior e escalabilidade:</p>
-            <div class="timeline-container">
-              <div class="timeline-item">
-                <div class="year">Produção</div>
-                <div class="event">Ateliês especializados na Itália e Portugal - investimento: R$ 500.000</div>
+            <h2 class="animated"><i class="fas fa-globe"></i> TERRITÓRIO NA ATUALIDADE</h2>
+            <p class="animated delay-1">No contexto contemporâneo, o conceito de território se expandiu para além das fronteiras físicas, incluindo <strong>espaços virtuais, econômicos e culturais</strong>.</p>
+            
+            <div class="info-cards">
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-desktop"></i></div>
+                <h3>Territórios Virtuais</h3>
+                <p>Espaços digitais onde empresas e Estados exercem influência e controle</p>
               </div>
-              <div class="timeline-item">
-                <div class="year">Comercialização</div>
-                <div class="event">E-commerce premium e flagship stores - investimento: R$ 300.000</div>
-              </div>
-              <div class="timeline-item">
-                <div class="year">Marketing</div>
-                <div class="event">Estratégia de luxo com orçamento anual: R$ 200.000</div>
+              
+              <div class="info-card animated delay-2">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Territórios Econômicos</h3>
+                <p>Zonas de influência econômica que transcendem fronteiras políticas</p>
               </div>
             </div>
-            <div class="highlight-box">
-              <p>Previsão de break-even em 18 meses com margem bruta de 65% e ticket médio de R$ 1.200.</p>
+            
+            <p class="animated delay-3">A <strong>globalização</strong> desafia as concepções tradicionais de território, criando novas formas de soberania e controle que operam em múltiplas escalas.</p>
+          </div>
+          <div class="visual-element">
+            <div class="map-container">
+              <div class="map-placeholder">
+                <i class="fas fa-network-wired" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p>Novas formas de território na era digital</p>
+              </div>
             </div>
+            <div class="image-caption">Territórios contemporâneos: físicos, virtuais e econômicos</div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 10: Projeção de Crescimento -->
-      <section class="slide" data-index="9" aria-hidden="true">
-        <div class="geometric-pattern"></div>
-        <div class="content-wrap">
-          <div class="text">
-            <h2>Trajetória de Crescimento</h2>
-            <p>Expansão estratégica mantendo os padrões de excelência Vanguard:</p>
-            <div class="work-grid">
-              <div class="work-card">
-                <h3>Ano 1-2</h3>
-                <ul class="bullet">
-                  <li>Lançamento da coleção signature</li>
-                  <li>400 clientes fiéis</li>
-                  <li>Faturamento: R$ 2.5M/ano</li>
-                </ul>
-              </div>
-              <div class="work-card">
-                <h3>Ano 3-5</h3>
-                <ul class="bullet">
-                  <li>Expansão internacional</li>
-                  <li>2.000 clientes premium</li>
-                  <li>Faturamento: R$ 12M/ano</li>
-                </ul>
-              </div>
+      <!-- SLIDE 7: CONCLUSÃO -->
+      <section class="slide" data-index="6">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
+        <div class="final-slide-layout">
+            <div class="content-wrap">
+                <div class="text">
+                    <h2 class="animated"><i class="fas fa-check-circle"></i> CONCLUSÃO</h2>
+                    <p class="animated delay-1">O conceito de território vai além da simples delimitação geográfica, representando um <strong>espaço de exercício de poder</strong> onde se manifestam relações de soberania, controle e identidade.</p>
+                    <p class="animated delay-2">As fronteiras, como normas legais e sociais, estão em constante transformação, refletindo as <strong>disputas de poder</strong> entre diferentes atores políticos e sociais.</p>
+                    <p class="animated delay-3">Na contemporaneidade, o território se expande para incluir espaços virtuais e econômicos, demonstrando a <strong>natureza dinâmica</strong> desta categoria fundamental da geografia política.</p>
+                </div>
             </div>
-          </div>
+            <div class="thank-you-side animated">
+                Obrigado!
+            </div>
         </div>
       </section>
 
-      <!-- SLIDE 11: Conclusão -->
-      <section class="slide" data-index="10" aria-hidden="true">
-        <div class="geometric-pattern"></div>
-        <div class="content-wrap">
-          <div class="text">
-            <h2>O Futuro da Elegância Masculina</h2>
-            <ul class="features">
-              <li><span class="feature-icon">📈</span> Mercado premium em expansão: +15% ao ano</li>
-              <li><span class="feature-icon">🎯</span> Proposta de valor única e defensável</li>
-              <li><span class="feature-icon">💡</span> Equipe com expertise em luxo e moda</li>
-              <li><span class="feature-icon">🌍</span> Alinhamento com consumo consciente de luxo</li>
-            </ul>
-            <div class="highlight-text">
-              A Vanguard não é apenas uma marca de roupas - é a manifestação de um novo padrão de excelência na moda masculina contemporânea.
-            </div>
-          </div>
-        </div>
-      </section>
+    </div>
 
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
     </div>
 
     <!-- CONTROLES -->
@@ -1176,215 +806,129 @@
     </div>
   </main>
 
+  <!-- SCRIPT EMBUTIDO -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const slides = Array.from(document.querySelectorAll('.slide'));
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
       const dotsWrap = document.getElementById('dots');
+      const progressBar = document.getElementById('progressBar');
       const TRANS_MS = 700;
 
       let current = 0;
       let isAnimating = false;
-      let touchStartX = 0;
-      let touchStartY = 0;
-      let touchMoved = false;
-      const THRESHOLD = 40;
 
-      // Build dots navigation
-      slides.forEach((s, i) => {
-        const d = document.createElement('button');
-        d.className = 'dot';
-        d.dataset.index = i;
-        d.setAttribute('aria-label', `Ir para slide ${i+1}`);
-        if (i === 0) d.classList.add('active');
-        dotsWrap.appendChild(d);
-      });
-      const dots = Array.from(document.querySelectorAll('.dot'));
-
-      // Initialize slides
-      slides.forEach((s, i) => {
-        if (i === 0) {
-          s.classList.add('active');
-          s.style.transform = 'translateX(0)';
-          s.style.opacity = '1';
-          s.setAttribute('aria-hidden', 'false');
-        } else {
-          s.style.transform = 'translateX(100%)';
-          s.style.opacity = '0';
-          s.setAttribute('aria-hidden', 'true');
-        }
-      });
-
-      // Update dots indicator
-      function updateDots(idx) {
-        dots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === idx));
+      function buildDots() {
+        slides.forEach((s, i) => {
+          const d = document.createElement('button');
+          d.className = 'dot';
+          d.dataset.index = i;
+          d.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+          if (i === 0) d.classList.add('active');
+          dotsWrap.appendChild(d);
+        });
       }
 
-      // Main slide transition function
-      function goTo(nextIdx) {
+      function initializeSlides() {
+        slides.forEach((s, i) => {
+          s.setAttribute('aria-hidden', i !== 0);
+          if (i === 0) {
+            s.classList.add('active');
+          }
+        });
+      }
+      
+      const dots = () => Array.from(dotsWrap.querySelectorAll('.dot'));
+      
+      function updateDots(idx) {
+        dots().forEach(d => d.classList.toggle('active', Number(d.dataset.index) === idx));
+      }
+
+      function updateProgress(idx) {
+        const progress = ((idx + 1) / slides.length) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+
+      function goTo(nextIdx, directionOverride = null) {
         if (isAnimating || nextIdx === current) return;
-        if (nextIdx < 0) nextIdx = slides.length - 1;
-        if (nextIdx >= slides.length) nextIdx = 0;
+        
+        nextIdx = (nextIdx + slides.length) % slides.length;
 
         isAnimating = true;
-        const from = slides[current];
-        const to = slides[nextIdx];
-        const direction = (nextIdx > current || (current === slides.length - 1 && nextIdx === 0)) ? 'next' : 'prev';
+        const fromSlide = slides[current];
+        const toSlide = slides[nextIdx];
+        
+        const direction = directionOverride || (nextIdx > current || (current === slides.length - 1 && nextIdx === 0)) ? 'next' : 'prev';
 
-        // Prepare incoming slide
-        to.style.transition = 'none';
-        to.style.opacity = '1';
-        to.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
-        to.classList.add('preparing');
-        to.style.zIndex = '3';
+        toSlide.style.transition = 'none';
+        toSlide.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+        toSlide.style.opacity = '1';
+        toSlide.setAttribute('aria-hidden', 'false');
+        
+        void toSlide.offsetWidth;
 
-        // Force reflow to ensure styles are applied
-        void to.offsetWidth;
+        fromSlide.style.transition = `transform ${TRANS_MS}ms cubic-bezier(0.65, 0, 0.35, 1), opacity ${TRANS_MS}ms ease`;
+        toSlide.style.transition = `transform ${TRANS_MS}ms cubic-bezier(0.65, 0, 0.35, 1), opacity ${TRANS_MS}ms ease`;
+        
+        fromSlide.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+        fromSlide.style.opacity = '0';
+        toSlide.style.transform = 'translateX(0)';
+        
+        current = nextIdx;
+        updateDots(current);
+        updateProgress(current);
 
-        // Apply transitions
-        from.style.transition = `transform ${TRANS_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${TRANS_MS}ms ease`;
-        to.style.transition = `transform ${TRANS_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${TRANS_MS}ms ease`;
-
-        // Animate slides
-        from.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
-        from.style.opacity = '0';
-
-        to.style.transform = 'translateX(0)';
-        to.style.opacity = '1';
-
-        let finished = false;
-        function done() {
-          if (finished) return;
-          finished = true;
-
-          // Clean up after animation
-          from.classList.remove('active');
-          from.style.transition = '';
-          from.style.transform = '';
-          from.style.opacity = '';
-          from.style.zIndex = '';
-          from.setAttribute('aria-hidden', 'true');
-
-          to.classList.add('active');
-          to.classList.remove('preparing');
-          to.style.transition = '';
-          to.style.transform = '';
-          to.style.opacity = '';
-          to.style.zIndex = '';
-          to.setAttribute('aria-hidden', 'false');
-
-          current = nextIdx;
-          updateDots(current);
+        setTimeout(() => {
+          fromSlide.classList.remove('active');
+          fromSlide.setAttribute('aria-hidden', 'true');
+          toSlide.classList.add('active');
+          
           isAnimating = false;
-        }
-
-        // Ensure animation completes even if interrupted
-        to.addEventListener('transitionend', done, { once: true });
-        setTimeout(done, TRANS_MS + 100);
+        }, TRANS_MS);
       }
-
-      // Button controls
-      prevBtn.addEventListener('click', () => goTo(current - 1));
-      nextBtn.addEventListener('click', () => goTo(current + 1));
       
-      // Dot navigation
-      dots.forEach(d => d.addEventListener('click', (e) => {
-        e.preventDefault();
-        goTo(Number(e.currentTarget.dataset.index));
-      }));
+      buildDots();
+      initializeSlides();
+      updateProgress(current);
 
-      // Keyboard navigation
+      prevBtn.addEventListener('click', () => goTo(current - 1, 'prev'));
+      nextBtn.addEventListener('click', () => goTo(current + 1, 'next'));
+      
+      dotsWrap.addEventListener('click', (e) => {
+        if (e.target.matches('.dot')) {
+          goTo(Number(e.target.dataset.index));
+        }
+      });
+      
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          goTo(current + 1);
-        }
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          goTo(current - 1);
-        }
-        if (e.key === 'Home') {
-          e.preventDefault();
-          goTo(0);
-        }
-        if (e.key === 'End') {
-          e.preventDefault();
-          goTo(slides.length - 1);
-        }
+        if (e.key === 'ArrowRight') goTo(current + 1, 'next');
+        if (e.key === 'ArrowLeft') goTo(current - 1, 'prev');
+        if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+        if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
       });
 
-      // Touch/swipe support for mobile devices
-      document.addEventListener('touchstart', (e) => {
-        if (e.touches.length !== 1) return;
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        touchMoved = false;
+      // Touch controls
+      let touchStartX = 0;
+      let touchMoved = false;
+      const THRESHOLD = 50;
+      document.addEventListener('touchstart', (e) => { 
+        touchStartX = e.touches[0].clientX; 
+        touchMoved = false; 
       }, { passive: true });
-
-      document.addEventListener('touchmove', (e) => {
-        touchMoved = true;
+      
+      document.addEventListener('touchmove', () => { 
+        touchMoved = true; 
       }, { passive: true });
-
+      
       document.addEventListener('touchend', (e) => {
-        if (!touchMoved || !e.changedTouches) return;
-        
+        if (!touchMoved) return;
         const touchEndX = e.changedTouches[0].clientX;
-        const touchEndY = e.changedTouches[0].clientY;
         const dx = touchEndX - touchStartX;
-        const dy = Math.abs(touchEndY - touchStartY);
-        
-        // Only trigger swipe if horizontal movement is significant and dominant
-        if (Math.abs(dx) > THRESHOLD && Math.abs(dx) > dy) {
-          if (dx < 0) {
-            // Swipe left - next slide
-            goTo(current + 1);
-          } else {
-            // Swipe right - previous slide
-            goTo(current - 1);
-          }
+        if (Math.abs(dx) > THRESHOLD) {
+          goTo(dx < 0 ? current + 1 : current - 1);
         }
       }, { passive: true });
-
-      // Accessibility improvements
-      slides.forEach((slide, index) => {
-        slide.setAttribute('role', 'region');
-        slide.setAttribute('aria-labelledby', `slide-title-${index}`);
-        const title = slide.querySelector('h2');
-        if (title) {
-          title.id = `slide-title-${index}`;
-        }
-      });
-
-      // Auto-focus content when slide changes
-      function focusSlideContent() {
-        const activeSlide = slides[current];
-        const focusable = activeSlide.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusable) {
-          focusable.focus();
-        } else {
-          activeSlide.focus();
-        }
-      }
-
-      // Observe slide changes to manage focus
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.attributeName === 'class' && 
-              mutation.target.classList.contains('active') && 
-              !mutation.oldValue.includes('active')) {
-            focusSlideContent();
-          }
-        });
-      });
-
-      slides.forEach(slide => {
-        observer.observe(slide, { 
-          attributes: true, 
-          attributeOldValue: true,
-          attributeFilter: ['class']
-        });
-      });
     });
   </script>
 </body>
